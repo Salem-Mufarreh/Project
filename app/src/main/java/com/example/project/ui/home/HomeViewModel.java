@@ -1,8 +1,12 @@
 package com.example.project.ui.home;
 
+import android.os.AsyncTask;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.PHP.Connect;
 
 public class HomeViewModel extends ViewModel {
 
@@ -12,6 +16,7 @@ public class HomeViewModel extends ViewModel {
         mText = new MutableLiveData<>();
         mText.setValue("This is home fragment");
     }
+
 
     public LiveData<String> getText() {
         return mText;
