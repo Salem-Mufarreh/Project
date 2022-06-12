@@ -48,8 +48,7 @@ public class HomeFragment extends Fragment {
         recycle.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
         loadItems(root);
-        loadUser(root);
-
+        
 
         return root;
     }
@@ -103,45 +102,5 @@ public class HomeFragment extends Fragment {
         Volley.newRequestQueue(root.getContext()).add(stringRequest);
 
     }
-    private void loadUser(View root) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.1.26:8080/Login.php/?email=admin@gmail.com",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-
-
-                        try {
-                            if(!items.isEmpty()){
-                                items.clear();
-                            }
-                            JSONArray array = new JSONArray(response);
-                            for(int i=0; i<array.length();i++){
-                                JSONObject object = array.getJSONObject(i);
-                                Toast.makeText(root.getContext(), object.getString("full_name"), Toast.LENGTH_SHORT).show();
-                            }
-
-
-                        }catch (Exception e){
-                            Toast.makeText(root.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
-
-                        }
-
-
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-
-                Toast.makeText(root.getContext(), error.toString() +"ERRor",Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-        Volley.newRequestQueue(root.getContext()).add(stringRequest);
-
-    }
 }

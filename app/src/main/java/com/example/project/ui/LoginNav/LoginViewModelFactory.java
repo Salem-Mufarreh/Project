@@ -1,4 +1,4 @@
-package com.example.project.ui.login;
+package com.example.project.ui.LoginNav;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;

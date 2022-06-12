@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_test"
-        android:name="com.example.project.ui.login.LoginFragment"
+        android:name="com.example.project.ui.LoginNav.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action

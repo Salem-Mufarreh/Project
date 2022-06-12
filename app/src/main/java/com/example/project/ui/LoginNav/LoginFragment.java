@@ -1,11 +1,4 @@
-package com.example.project.ui.login;
-
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.fragment.app.Fragment;
+package com.example.project.ui.LoginNav;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,14 +14,31 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.project.R;
+import com.example.project.data.model.LoggedInUser;
 import com.example.project.databinding.FragmentLoginBinding;
 
-import com.example.project.R;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class LoginFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
     private FragmentLoginBinding binding;
+    private LoggedInUser user;
 
     @Nullable
     @Override
@@ -37,6 +47,7 @@ public class LoginFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
 
         binding = FragmentLoginBinding.inflate(inflater, container, false);
+
         return binding.getRoot();
 
     }
@@ -118,9 +129,9 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                loadUser(binding.getRoot(),usernameEditText.getText().toString(),passwordEditText.getText().toString());
+                //loginViewModel.login(user.getDisplayName(),user.getPassword());
+
             }
         });
     }
@@ -147,4 +158,48 @@ public class LoginFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    private void loadUser(View root,String username,String password) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.1.26:8080/Login.php/?email=admin@gmail.com",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+
+
+                        try {
+
+                            JSONArray array = new JSONArray(response);
+                            for(int i=0; i<array.length();i++){
+                                JSONObject object = array.getJSONObject(i);
+                                user = new LoggedInUser(object.getString("id"),object.getString("full_name"),
+                                        object.getString("password"));
+                            }
+
+                            loginViewModel.login(user.getDisplayName(),user.getPassword());
+                            Navigation.findNavController(binding.getRoot()).navigate(R.id.nav_home);
+
+                        }catch (Exception e){
+                            Toast.makeText(root.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                Toast.makeText(root.getContext(), error.toString() +"ERRor",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        Volley.newRequestQueue(root.getContext()).add(stringRequest);
+
+    }
+
 }

@@ -1,15 +1,15 @@
-package com.example.project.ui.login;
+package com.example.project.ui.LoginNav;
+
+import android.util.Patterns;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
+import com.example.project.R;
 import com.example.project.data.LoginRepository;
 import com.example.project.data.Result;
 import com.example.project.data.model.LoggedInUser;
-import com.example.project.R;
 
 public class LoginViewModel extends ViewModel {
 
