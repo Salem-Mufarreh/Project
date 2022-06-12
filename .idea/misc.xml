@@ -3,11 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_login.xml" value="0.15208333333333332" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_login2.xml" value="0.1578125" />
         <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/activity_main.xml" value="0.10989583333333333" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/app_bar_main.xml" value="0.1578125" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/blank_fragment.xml" value="0.1578125" />
         <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/content_main.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/dynamic_card.xml" value="0.3486590038314176" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/fragment_gallery.xml" value="0.25" />
         <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/fragment_home.xml" value="0.2841918294849023" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/fragment_login.xml" value="0.2359375" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/fragment_second.xml" value="0.1578125" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/login.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/login_activity.xml" value="0.10989583333333333" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/login_fragment.xml" value="0.264" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/layout/nav_header_main.xml" value="0.1578125" />
         <entry key="..\:/AndroidProjects/Project/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/menu/left_menu.xml" value="0.15208333333333332" />
+        <entry key="..\:/AndroidProjects/Project/app/src/main/res/menu/main.xml" value="0.264" />
       </map>
     </option>
   </component>

@@ -1,8 +1,8 @@
 package com.example.project.ui.home;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -32,7 +32,10 @@ public class HomeFragment extends Fragment {
     private RecyclerView recycle;
     private int loaded =0;
     private ArrayList<Dinner> items = new ArrayList<Dinner>();
-    private static  final String BASE_URL = "http://192.168.1.72:8080/config.php";
+    private static  final String BASE_URL = "http://192.168.1.26:8080/config.php";
+    private MenuInflater inflater;
+
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +48,7 @@ public class HomeFragment extends Fragment {
         recycle.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
         loadItems(root);
-
+        loadUser(root);
 
 
         return root;
@@ -56,21 +59,7 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-    Response.Listener<String> listener = new Response.Listener<String>() {
-        @Override
-        public void onResponse(String response) {
-            try {
-                JSONArray jsonArray = new JSONArray();
-                for(int i=0;i<jsonArray.length();i++){
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    Log.v("Here",jsonObject.toString());
-                }
-            }
-            catch (Exception e){
 
-            }
-        }
-    };
     private void loadItems(View root) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL,
@@ -99,6 +88,47 @@ public class HomeFragment extends Fragment {
 
                         itemsAdapter adapter = new itemsAdapter(getContext(),items);
                         recycle.setAdapter(adapter);
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                Toast.makeText(root.getContext(), error.toString() +"ERRor",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+        Volley.newRequestQueue(root.getContext()).add(stringRequest);
+
+    }
+    private void loadUser(View root) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.1.26:8080/Login.php/?email=admin@gmail.com",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+
+
+                        try {
+                            if(!items.isEmpty()){
+                                items.clear();
+                            }
+                            JSONArray array = new JSONArray(response);
+                            for(int i=0; i<array.length();i++){
+                                JSONObject object = array.getJSONObject(i);
+                                Toast.makeText(root.getContext(), object.getString("full_name"), Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        }catch (Exception e){
+                            Toast.makeText(root.getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+
+                        }
+
+
 
                     }
                 }, new Response.ErrorListener() {
