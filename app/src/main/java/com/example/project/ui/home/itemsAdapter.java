@@ -18,16 +18,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.project.R;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class itemsAdapter extends RecyclerView.Adapter<itemsAdapter.ViewHolder>{
     private Context context;
     private ArrayList<Dinner> items;
-    private static  final String BASE_URL = "http://192.168.1.72:8080/add_Cart.php";
 
     public itemsAdapter(Context context, ArrayList<Dinner> list) {
         this.context = context;
@@ -54,7 +49,7 @@ public class itemsAdapter extends RecyclerView.Adapter<itemsAdapter.ViewHolder>{
         TextView description = (TextView)cardView.findViewById(R.id.textDescription);
         Button add = cardView.findViewById(R.id.AddToCart);
         TextView id = (TextView)cardView.findViewById(R.id.textid);
-
+        String[] ids = id.getText().toString().split("\n");
         name.setText(pizza.getName());
         price.setText(String.valueOf(pizza.getPrice()));
         time.setText(String.valueOf(pizza.getTime()));
@@ -69,7 +64,7 @@ public class itemsAdapter extends RecyclerView.Adapter<itemsAdapter.ViewHolder>{
             @Override
             public void onClick(View view) {
 
-
+                loadUser(view,"as","as");
             }
 
         });
@@ -91,9 +86,10 @@ public class itemsAdapter extends RecyclerView.Adapter<itemsAdapter.ViewHolder>{
 
 
 
-    private void loadItems(View root) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, BASE_URL,
+
+    private void loadUser(View root,String username,String password) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.1.72:8080/add_Cart.php?Customer_id=1&Order=2",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -101,11 +97,16 @@ public class itemsAdapter extends RecyclerView.Adapter<itemsAdapter.ViewHolder>{
 
 
                         try {
-                            Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
 
+
+                                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+                                
+
+
+                            
 
                         }catch (Exception e){
-                            Toast.makeText(root.getContext(), "Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -117,14 +118,13 @@ public class itemsAdapter extends RecyclerView.Adapter<itemsAdapter.ViewHolder>{
             public void onErrorResponse(VolleyError error) {
 
 
-                Toast.makeText(root.getContext(), error.toString() +"ERRor",Toast.LENGTH_LONG).show();
+                Toast.makeText(context, error.toString() +"ERRor",Toast.LENGTH_LONG).show();
 
             }
         });
 
-        Volley.newRequestQueue(root.getContext()).add(stringRequest);
+        Volley.newRequestQueue(context).add(stringRequest);
 
     }
-
 
 }

@@ -38,7 +38,7 @@ public class LoginFragment extends Fragment {
 
     private LoginViewModel loginViewModel;
     private FragmentLoginBinding binding;
-    private LoggedInUser user;
+    public LoggedInUser user;
 
     @Nullable
     @Override
@@ -161,7 +161,7 @@ public class LoginFragment extends Fragment {
 
     private void loadUser(View root,String username,String password) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.1.26:8080/Login.php/?email=admin@gmail.com",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.1.72:8080/Login.php/?email=admin@gmail.com",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

@@ -32,7 +32,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recycle;
     private int loaded =0;
     private ArrayList<Dinner> items = new ArrayList<Dinner>();
-    private static  final String BASE_URL = "http://192.168.1.26:8080/config.php";
+    private static  final String BASE_URL = "http://192.168.1.72:8080/config.php";
     private MenuInflater inflater;
 
 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view2"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_margin="20dp"
+    card_view:cardElevation="2dp"
+    card_view:cardCornerRadius="4dp"
+    >
+
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/order_name"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            card_view:layout_column="0"
+            card_view:layout_row="0" />
+
+
+
+
+        <TextView
+            android:id="@+id/order_date"
+            android:layout_width="151dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:text="TextView"
+            card_view:layout_column="1"
+            card_view:layout_row="0" />
+
+        <RelativeLayout>
+
+</RelativeLayout>
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="TextView"
+            card_view:layout_column="0"
+            card_view:layout_columnSpan="2"
+            card_view:layout_row="1" />
+
+        <RelativeLayout
+    card_view:layout_column="0"/>
+
+        <TextView
+            android:id="@+id/textid2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            card_view:layout_column="1"
+            card_view:layout_row="1"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/order_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="25dp"
+            android:text="TextView"
+            card_view:layout_column="0"
+            card_view:layout_row="2" />
+
+        <TextView
+            android:id="@+id/order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            card_view:layout_column="1"
+            card_view:layout_row="2" />
+
+    </androidx.gridlayout.widget.GridLayout>
+</androidx.cardview.widget.CardView>
