@@ -9,7 +9,7 @@ import com.example.project.data.model.LoggedInUser;
 public class LoginRepository {
 
     private static volatile LoginRepository instance;
-
+    public LoggedInUser user2;
     private LoginDataSource dataSource;
 
     // If user credentials will be cached in local storage, it is recommended it be encrypted
@@ -17,7 +17,7 @@ public class LoginRepository {
     private LoggedInUser user = null;
 
     // private constructor : singleton access
-    private LoginRepository(LoginDataSource dataSource) {
+    public LoginRepository(LoginDataSource dataSource) {
         this.dataSource = dataSource;
     }
 

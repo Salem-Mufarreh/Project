@@ -20,7 +20,6 @@ import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -91,6 +90,7 @@ public class LoginFragment extends Fragment {
                 }
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
+
                 }
             }
         });
@@ -131,12 +131,13 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 loadUser(binding.getRoot(),usernameEditText.getText().toString(),passwordEditText.getText().toString());
                 //loginViewModel.login(user.getDisplayName(),user.getPassword());
-
-            }
+                }
         });
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
+        TextView name = (TextView)getView().findViewById(R.id.nav_name);
+        name.setText(model.getDisplayName());
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         if (getContext() != null && getContext().getApplicationContext() != null) {
@@ -177,8 +178,7 @@ public class LoginFragment extends Fragment {
                                         object.getString("password"));
                             }
 
-                            loginViewModel.login(user.getDisplayName(),user.getPassword());
-                            Navigation.findNavController(binding.getRoot()).navigate(R.id.nav_home);
+
 
                         }catch (Exception e){
                             Toast.makeText(root.getContext(), e.toString(), Toast.LENGTH_SHORT).show();

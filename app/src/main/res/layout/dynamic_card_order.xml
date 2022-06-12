@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view2"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="170dp"
     android:layout_margin="20dp"
-    card_view:cardElevation="2dp"
     card_view:cardCornerRadius="4dp"
-    >
+    card_view:cardElevation="2dp">
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="370dp"
+        android:layout_height="170dp"
         android:padding="10dp">
 
         <TextView
@@ -23,8 +21,6 @@
             android:text="TextView"
             card_view:layout_column="0"
             card_view:layout_row="0" />
-
-
 
 
         <TextView
@@ -38,7 +34,8 @@
 
         <RelativeLayout>
 
-</RelativeLayout>
+        </RelativeLayout>
+
         <TextView
             android:id="@+id/textDescription"
             android:layout_width="match_parent"
@@ -48,17 +45,16 @@
             card_view:layout_columnSpan="2"
             card_view:layout_row="1" />
 
-        <RelativeLayout
-    card_view:layout_column="0"/>
+        <RelativeLayout card_view:layout_column="0" />
 
         <TextView
             android:id="@+id/textid2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:visibility="gone"
             card_view:layout_column="1"
-            card_view:layout_row="1"
-            android:visibility="gone"/>
+            card_view:layout_row="1" />
 
         <TextView
             android:id="@+id/order_price"
@@ -76,6 +72,23 @@
             android:text="TextView"
             card_view:layout_column="1"
             card_view:layout_row="2" />
+
+        <EditText
+            android:id="@+id/Number"
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            card_view:layout_column="0"
+            card_view:layout_row="3" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Confirm"
+            card_view:layout_column="1"
+            card_view:layout_row="3" />
 
     </androidx.gridlayout.widget.GridLayout>
 </androidx.cardview.widget.CardView>
